@@ -99,7 +99,7 @@ let moduleTargets: [Target] = [
   .target(
     name: "BoltSearch",
     dependencies: [Dependencies.GRDB, "BoltDocsets", "BoltTypes"],
-    path: "./Sources/Search",
+    path: "./Sources/Search/Sources",
     swiftSettings: [
       .swiftLanguageMode(.v5)
     ]
@@ -166,12 +166,23 @@ let testTargets: [Target] = [
   .testTarget(
     name: "BoltDocsetsTests",
     dependencies: ["BoltDocsets", "BoltTestingUtils"],
-    path: "./Sources/Docsets/",
+    path: "./Sources/Docsets",
     sources: [
       "./Tests"
     ],
     resources: [
       .copy("./TestResources"),
+    ],
+    swiftSettings: [
+      .swiftLanguageMode(.v5)
+    ]
+  ),
+  .testTarget(
+    name: "BoltSearchTests",
+    dependencies: ["BoltSearch", "BoltTestingUtils"],
+    path: "./Sources/Search",
+    sources: [
+      "./Tests"
     ],
     swiftSettings: [
       .swiftLanguageMode(.v5)
@@ -183,7 +194,7 @@ let dependencies: [Package.Dependency] = [
   .package(name: "BoltUtils", path: "../BoltUtils"),
   .package(name: "BoltCombineExtensions", path: "../BoltCombineExtensions"),
   .package(name: "BoltRxSwift", path: "../BoltRxSwift"),
-  .package(url: "https://github.com/hmlongco/Factory.git", revision: "2.3.2"),
+  .package(url: "https://github.com/hmlongco/Factory.git", revision: "2.4.3"),
   .package(url: "https://github.com/BoltDocs/SWCompressionTAR.git", revision: "4.8.5"),
   .package(url: "https://github.com/BoltDocs/GzipSwift.git", revision: "6.1.0"),
   .package(url: "https://github.com/groue/GRDB.swift.git", revision: "v6.29.2"),
